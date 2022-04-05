@@ -32,7 +32,7 @@ function getTotalSpent(data){
 
 function printStats(data){
     budgetStuff.innerHTML = '';
-    if(data[0] != null){
+    if(data[0].budget != null){
         const budget = getFormarNum(data[0].budget);
         const spent = getFormarNum(getTotalSpent(data));
         const result = getFormarNum(data[0].budget - getTotalSpent(data));
