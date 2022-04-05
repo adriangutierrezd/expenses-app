@@ -181,11 +181,8 @@ class User{
 
     public function getBudget(){
         try{
-            $budget = $this->db->query("SELECT budget FROM users WHERE id = $this->id");
-            if($budget){
-                $budget = $budget->fetch_all();
-                return $budget[0][0];
-            }
+            $budget = $this->db->query("SELECT budget FROM users WHERE id = $this->id")->fetch_assoc();
+            if($budget){return $budget;}
             return false;
         }catch(Exception $exc){
             return false;

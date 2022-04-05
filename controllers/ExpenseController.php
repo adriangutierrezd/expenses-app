@@ -83,7 +83,9 @@ class ExpenseController{
         $expenses = [];
         $expense = new Expense();
         $data = $expense->amountSpentByCategory($startDate, $endDate);
-        $expenses = $data->fetch_all();
+        while($exp = $data->fetch_object()){
+            array_push($expenses, $exp);
+        }
         echo json_encode($expenses);
         die();
     }   
@@ -94,7 +96,9 @@ class ExpenseController{
         $expenses = [];
         $expense = new Expense();
         $data = $expense->amountSpentByMonth();
-        $expenses = $data->fetch_all();
+        while($exp = $data->fetch_object()){
+            array_push($expenses, $exp);
+        }
         echo json_encode($expenses);
         die();
     }
@@ -113,7 +117,9 @@ class ExpenseController{
         $expenses = [];
         $expense = new Expense();
         $data = $expense->getAll($startDate, $endDate);
-        $expenses = $data->fetch_all();
+        while($exp = $data->fetch_object()){
+            array_push($expenses, $exp);
+        }
         echo json_encode($expenses);
         die();
     }

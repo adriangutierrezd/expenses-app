@@ -38,15 +38,15 @@ function printCategories(data){
     data.forEach(element => {
         const elementHTML = `
         <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${element[2]}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${element.name}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" style="width:50px;background-color:${element[3]};height:20px;"> </span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" style="width:50px;background-color:${element.color};height:20px;"> </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-            <?php if(${element[0]} != 1) : ?>
-                <button class="text-blue-500 hover:text-blue-600" onclick="editCategory(${element[0]}, '${element[2]}', '${element[3]}')">Editar</button>
+            <?php if(${element.id} != 1) : ?>
+                <button class="text-blue-500 hover:text-blue-600" onclick="editCategory(${element.id}, '${element.name}', '${element.color}')">Editar</button>
                 <span>  |  </span>
-                <button class="text-red-500 hover:text-red-600" onclick="deleteCategory(${element[0]})">Eliminar</button>
+                <button class="text-red-500 hover:text-red-600" onclick="deleteCategory(${element.id})">Eliminar</button>
             <?php endif; ?>
             </td>
         </tr>

@@ -50,8 +50,8 @@ function printSpentByMonth(data){
     const nameMonths = [];
 
     data.forEach(element => {
-        amountMonths.push(element[1]);
-        nameMonths.push(getMonthName(element[0]));
+        amountMonths.push(element.SPENT);
+        nameMonths.push(getMonthName(element.MONTH));
     }); 
 
 

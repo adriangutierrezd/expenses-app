@@ -73,10 +73,10 @@ class Expense{
     public function getAll($start_date = null, $end_date = null){
         try{
             if($start_date != null && $end_date != null){
-                $sql = "SELECT expenses.*, categories.name FROM expenses INNER JOIN categories 
+                $sql = "SELECT expenses.id, expenses.category_id, expenses.name AS expense_name, expenses.amount, expenses.date, categories.name AS category_name FROM expenses INNER JOIN categories 
                 ON expenses.category_id = categories.id AND expenses.user_id = $this->user_id AND (expenses.date BETWEEN '$start_date' AND '$end_date')";
             }else{
-                $sql = "SELECT expenses.*, categories.name FROM expenses INNER JOIN categories 
+                $sql = "SELECT expenses.id, expenses.category_id, expenses.name AS expense_name, expenses.amount, expenses.date, categories.name AS category_name FROM expenses INNER JOIN categories 
                 ON expenses.category_id = categories.id AND expenses.user_id = $this->user_id AND (MONTH(expenses.date) = MONTH(CURRENT_DATE()) AND YEAR(expenses.date) = YEAR(CURRENT_DATE()))";
             }
             $expenses = $this->db->query($sql);

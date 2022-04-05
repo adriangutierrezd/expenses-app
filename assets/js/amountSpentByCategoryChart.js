@@ -52,10 +52,10 @@ function printSpentByCategory(data){
     const backgroundColors = [];
 
     data.forEach(element => {
-        amounts.push(element[0]);
-        categories.push(element[1]);
-        borderColors.push(convertHex(element[2]));
-        backgroundColors.push(convertHex(element[2], 0.2))
+        amounts.push(element.SPENT);
+        categories.push(element.NAME);
+        borderColors.push(convertHex(element.COLOR));
+        backgroundColors.push(convertHex(element.COLOR, 0.2))
     }); 
 
 

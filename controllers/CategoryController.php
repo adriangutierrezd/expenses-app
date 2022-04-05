@@ -19,9 +19,12 @@ class CategoryController{
         header('Content-Type: application/json');
         $categories = [];
         $category = new Category();
-        $data = $category->getAll();
-        $categories = $data->fetch_all();
-        echo json_encode($categories);
+        $categories = $category->getAll();
+        $catgs = [];
+        while($catg = $categories->fetch_object()){
+            array_push($catgs, $catg);
+        }
+        echo json_encode($catgs);
         die();
     }
     

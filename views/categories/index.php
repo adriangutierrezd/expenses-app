@@ -18,7 +18,7 @@ require_once 'helpers/form.php';
             <i class="bi bi-tags text-blue-700"></i>
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-grow">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Añadir gasto</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Añadir categoría</h3>
             <div class="mt-2">
                     <div class="form-group">
                         <label class="form-label" for="name">Nombre:</label>
@@ -119,7 +119,7 @@ require_once 'helpers/form.php';
             <i class="bi bi-pencil text-blue-400 text-lg"></i>    
           </div>
           <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left flex-grow">
-            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Editar gasto</h3>
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">Editar categoría</h3>
             <!-- Form -->
             <div class="mt-2">
                 <input type="text" name="categoryId" id="categoryId" value="" class="hidden">

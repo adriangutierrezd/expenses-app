@@ -57,10 +57,13 @@ class BudgetController{
         ob_clean();
         header('Content-Type: application/json');
         $response = [];
-        $expense = new Expense();
         $user = new User();
-        $expenses = $expense->getAll();
-        $expenses = $expenses->fetch_all();
+        $expenses = [];
+        $expense = new Expense();
+        $data = $expense->getAll();
+        while($exp = $data->fetch_object()){
+            array_push($expenses, $exp);
+        }
         $budget = $user->getBudget();
         array_push($response, $budget);
         array_push($response, $expenses);

@@ -27,9 +27,6 @@ function filter(){
 }
 
 
-
-
-
 async function getExpenses(start_date = null, end_date = null){
     const url = BASE_URL + 'expense/getExpenses';
     const params = {
@@ -67,13 +64,13 @@ function printExpenses(data){
     data.forEach(element => {
         const elementHTML = `
         <tr>
-            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 truncate">${element[3]}</td>
-            <td class="hidden md:flex px-6 py-4 whitespace-nowrap text-sm text-gray-900">${element[6]}</td>
-            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">${element[4]} €</td>
+            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900 truncate">${element.expense_name}</td>
+            <td class="hidden md:flex px-6 py-4 whitespace-nowrap text-sm text-gray-900">${element.category_name}</td>
+            <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">${getFormarNum(element.amount)}</td>
             <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-            <button class="text-blue-500 hover:text-blue-600" onclick="editExpense(${element[0]}, '${element[3]}', ${element[2]}, ${element[4]}, '${element[5]}')">Editar</button>
+            <button class="text-blue-500 hover:text-blue-600" onclick="editExpense(${element.id}, '${element.expense_name}', ${element.category_id}, ${element.amount}, '${element.date}')">Editar</button>
             <span>  |  </span>
-            <button class="text-red-500 hover:text-red-600" onclick="deleteExpense(${element[0]})">Eliminar</button>
+            <button class="text-red-500 hover:text-red-600" onclick="deleteExpense(${element.id})">Eliminar</button>
             </td>
         </tr>
         `;

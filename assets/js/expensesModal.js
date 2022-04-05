@@ -66,7 +66,6 @@ function toggleAddExpenseModal(){
             fulldate = `${year}-${month}-0${day}`;
         }
     }
-    console.log(fulldate);
     document.getElementById('name').value = '';
     document.getElementById('amount').value = '';
     document.getElementById('date').value = fulldate;

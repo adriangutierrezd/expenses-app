@@ -24,21 +24,18 @@ async function updateStats(){
 function getTotalSpent(data){
     let totalSpent = 0;
     data[1].forEach(element => {
-        totalSpent += parseFloat(element[4]);
+        totalSpent += parseFloat(element.amount);
     });
     return totalSpent;
 }
 
-function getFormarNum(num){
-    return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(num);
-}
 
 function printStats(data){
     budgetStuff.innerHTML = '';
     if(data[0] != null){
-        const budget = getFormarNum(data[0]);
+        const budget = getFormarNum(data[0].budget);
         const spent = getFormarNum(getTotalSpent(data));
-        const result = getFormarNum(data[0] - getTotalSpent(data));
+        const result = getFormarNum(data[0].budget - getTotalSpent(data));
 
         budgetStuff.innerHTML = `
         <div class="flex flex-col flex-items-center justify-start p-4">
