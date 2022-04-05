@@ -1,0 +1,45 @@
+/* Impedir scroll cuando el menu está abierto */
+.overflow-block{
+    overflow: hidden;
+}
+
+/* ************ MENU STYLES ************* */
+#dropdown-menu-items{
+    min-height: 85vh;
+}
+
+
+/* Menu animation */
+@keyframes show{
+    0%   {opacity: 0%;}
+    100% {opacity: 100%;}
+}
+
+.show{
+    animation: show;
+    animation-duration: 300ms;
+}
+
+@keyframes close{
+    0%   {opacity: 100%;}
+    100% {opacity: 0%;}
+}
+
+.close{
+    animation: close;
+    animation-duration: 300ms;
+}
+/* ************  END MENU STYLES ************ */
+
+/*************  MENU STYLES *****************/
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.fadein{
+    animation: fadein;
+    animation-duration: 700ms;
+}
+
+/*********** END MENU STYLES *******************/

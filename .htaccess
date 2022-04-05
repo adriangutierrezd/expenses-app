@@ -1,0 +1,12 @@
+<ifModule mod_rewrite.c>
+
+# Activar el mod_rewrite
+RewriteEngine on
+ErrorDocument 404 http://localhost/expenses-app/?controller=error&action=index
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+
+</ifModule>
