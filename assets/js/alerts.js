@@ -1,3 +1,7 @@
+/**
+ * Muestra una alerta de éxito o fracaso
+ * @param {Number} status Código de respuesta AJAX
+ */
 function showAlert(status){
     if(status === STATUS_OK){
         successAlert.classList.remove('hidden');
@@ -7,6 +11,10 @@ function showAlert(status){
     setTimeout(hideAlert, 2000, status);
 }
 
+/**
+ * Oculta una alerta de éxito o fracaso
+ * @param {Number} status Código de respuesta AJAX
+ */
 function hideAlert(status){
     if(status === STATUS_OK){
         successAlert.classList.add('hidden');

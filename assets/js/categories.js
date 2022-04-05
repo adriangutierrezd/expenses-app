@@ -14,7 +14,7 @@ createCategoryBtn.addEventListener('click', () => {createCategory();})
 
 
 async function getCategories(){
-    const url = 'http://localhost/expenses-app/category/getCategories';
+    const url = BASE_URL + 'category/getCategories';
     const response = await fetch(url);
     switch(response.status){
         case STATUS_OK:
@@ -57,7 +57,7 @@ function printCategories(data){
 
 async function delCategory(){
     const id = document.getElementById('deleteCategoryId').value;
-    const url = 'http://localhost/expenses-app/category/delete';
+    const url = BASE_URL + 'category/delete';
     const params = {
         id: id
     }
@@ -103,7 +103,7 @@ async function updateCategory(){
     }else{errorColorEdit.innerText = ''}
 
     // Llamada al servidor
-    const url = 'http://localhost/expenses-app/category/update';
+    const url = BASE_URL + 'category/update';
     const params = {
         id: id,
         name: name,
@@ -153,7 +153,7 @@ async function createCategory(){
     }else{errorColor.innerText = ''}
 
     // Llamada al servidor
-    const url = 'http://localhost/expenses-app/category/save';
+    const url = BASE_URL + 'category/save';
     const params = {
         name: name,
         color: color

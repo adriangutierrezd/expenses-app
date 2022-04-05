@@ -7,7 +7,7 @@ window.addEventListener('load', () => {
 updateBudgetBtn.addEventListener('click', () => {updateBudget();})
 
 async function updateStats(){
-    const url = 'http://localhost/expenses-app/budget/getStats';
+    const url = BASE_URL + 'budget/getStats';
     const response = await fetch(url);
     switch(response.status){
         case STATUS_OK:
@@ -92,7 +92,7 @@ async function updateBudget(){
     }else{errorBudgetEdit.innerText = ''}
 
     // Llamada al servidor
-    const url = 'http://localhost/expenses-app/budget/update';
+    const url = BASE_URL + '/budget/update';
     const params = {
         budget: budget
     }
@@ -106,9 +106,11 @@ async function updateBudget(){
     const response = await fetch(url, info);
     switch(response.status){
         case STATUS_OK:
-            const data = await response.json();
             toggleEditBudgetModal();
             updateStats(); 
+            break;
+        default:
+            showAlert(1);
             break;
     }
 }

@@ -31,7 +31,7 @@ function filter(){
 
 
 async function getExpenses(start_date = null, end_date = null){
-    const url = 'http://localhost/expenses-app/expense/getExpenses';
+    const url = BASE_URL + 'expense/getExpenses';
     const params = {
         start_date: start_date,
         end_date: end_date
@@ -84,7 +84,7 @@ function printExpenses(data){
 async function delExpense(){
     const expenseId = document.getElementById('deleteExpenseId').value;
 
-    const url = 'http://localhost/expenses-app/expense/delete';
+    const url = BASE_URL + 'expense/delete';
     const params = {
         id: expenseId
     }
@@ -162,7 +162,7 @@ async function updateExpense(){
     
 
     // Llamada al servidor
-    const url = 'http://localhost/expenses-app/expense/update';
+    const url = BASE_URL + 'expense/update';
     const params = {
         id: id,
         name: name,
@@ -237,7 +237,7 @@ async function createExpense(){
 
 
     // Llamada al servidor
-    const url = 'http://localhost/expenses-app/expense/save';
+    const url = BASE_URL + '/expense/save';
     const params = {
         id: id,
         name: name,

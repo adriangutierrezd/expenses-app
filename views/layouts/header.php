@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="<?=base_url?>/assets/css/styles.css">
     <link rel="stylesheet" href="<?=base_url?>/assets/css/menu.css">
     <script type="text/javascript" src="<?=base_url?>/assets/js/menu.js" defer></script>
+    <script type="text/javascript" src="<?=base_url?>/assets/js/constantes.js" defer></script>
+    <script type="text/javascript" src="<?=base_url?>/assets/js/alerts.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/expensesModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/categoriesModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/budgetModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/expenses.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/categories.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/budget.js" defer></script>
-    <script type="text/javascript" src="<?=base_url?>/assets/js/alerts.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByMonthChart.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByCategoryChart.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">

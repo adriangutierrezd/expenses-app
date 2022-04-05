@@ -1,7 +1,3 @@
-const STATUS_OK = 200;
-const STATUS_ERROR_SERVER = 500;
-const STATUS_NOT_FOUND = 404;
-
 let spentByCategoryChart = null;
 
 window.addEventListener('load', () => {
@@ -14,7 +10,7 @@ window.addEventListener('load', () => {
  * @param {date} end_date Fecha de fin del periodo
  */
 async function getSpentByCategory(start_date = null, end_date = null){
-    const url = 'http://localhost/expenses-app/expense/getExpenseByCategory';
+    const url = BASE_URL +'expense/getExpenseByCategory';
     const params = {
         start_date: start_date,
         end_date: end_date
@@ -34,17 +30,21 @@ async function getSpentByCategory(start_date = null, end_date = null){
             printSpentByCategory(data);
             break;
         case STATUS_ERROR_SERVER:
-            //
+            document.getElementById('categoryChart').innerText = 'Ha ocurrido un error del servidor.';
             break;
         case STATUS_NOT_FOUND:
-            //
+            document.getElementById('categoryChart').innerText = 'No hemos podido encontrar lo que buscabas.';
             break;
         case defualt:
-            //
+            document.getElementById('categoryChart').innerText = 'Ha ocurrido un error inesperado.';
             break;
     }
 }
 
+/**
+ * Crea la gráfica de gasto desgregado por categoría del periodo seleccionado
+ * @param {Object} data Datos de los gastos y categorias de dicho periodo
+ */
 function printSpentByCategory(data){
     const amounts = [];
     const categories = [];
@@ -84,10 +84,19 @@ function printSpentByCategory(data){
 
 }
 
+/**
+ * Elimina la gráfica creada
+ */
 function destroySpentByCategoryChart(){
     spentByCategoryChart.destroy();
 }
 
+/**
+ * Transforma el código de color de HEX a RGBA
+ * @param {String} hexCode Color en HEX
+ * @param {Number} opacity Opacidad del color en RGBA
+ * @returns Color transformado en RGBA
+ */
 function convertHex(hexCode, opacity = 1){
     var hex = hexCode.replace('#', '');
 
