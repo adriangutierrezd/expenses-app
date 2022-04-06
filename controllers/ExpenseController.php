@@ -7,9 +7,7 @@ require_once 'helpers/Utils.php';
 class ExpenseController{
     
     /**
-     * Crea un nuevo gasto
-     * 
-     * Recoge, limpia y comprueba los datos enviados en el formulario. Si hay algún error lo muestra, y si está todo correcto, crea la instancia de gasto.
+     * Recibe los datos desde Javascript y crea un nuevo gasto
      */
     public function save(){
         ob_clean();
@@ -44,9 +42,7 @@ class ExpenseController{
     }
     
     /**
-     * Actualiza un gasto
-     * 
-     * Recoge, limpia y comprueba los datos enviados en el formulario. Si hay algún error lo muestra, y si está todo correcto, actualiza el gasto en la base de datos
+     * Recibe los datos desde Javascript y actualiza un gasto
      */
     public function update(){
         ob_clean();
@@ -67,7 +63,7 @@ class ExpenseController{
     }
 
     /**
-     * Cuando recibe una petición AJAX, obtiene los gastos de la base de datos y las manda a la vista
+     * Obtiene el gasto desagregado por categoría del periodo seleccionado
      */
     public function getExpenseByCategory(){
         ob_clean();
@@ -90,6 +86,9 @@ class ExpenseController{
         die();
     }   
 
+    /**
+     * Obtiene el gasto desagregado por mes del último año natural
+     */
     public function getExpenseByMonth(){
         ob_clean();
         header('Content-Type: application/json');
@@ -103,6 +102,9 @@ class ExpenseController{
         die();
     }
 
+    /**
+     * Obtiene la información de los gastos del periodo seleccionado
+     */
     public function getExpenses(){
         ob_clean();
         header('Content-Type: application/json');

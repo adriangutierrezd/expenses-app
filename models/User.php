@@ -179,6 +179,10 @@ class User{
         }
     }
 
+    /**
+     * Obtiene el presupuesto del usuario
+     * @return false si la operación falla, y el presupuesto si la operación es exitosa
+     */
     public function getBudget(){
         try{
             $budget = $this->db->query("SELECT budget FROM users WHERE id = $this->id")->fetch_assoc();

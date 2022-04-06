@@ -5,7 +5,7 @@ var deleteExpenseId = document.getElementById('deleteExpenseId');
 
 /**
  * Abre el modal y obtiene el gasto a eliminar
- * @param {*} expenseId Gasto a eliminar
+ * @param {*} expenseId Id del gasto a eliminar
  */
 function deleteExpense(expenseId){
     deleteModal.classList.remove('hidden');
@@ -13,12 +13,12 @@ function deleteExpense(expenseId){
 }
 
 /**
- * Cierra el modal si se hace clic fuera de el
+ * Cierra el modal de eliminación de gastos si se hace clic fuera de el
  */
 document.getElementById('outside-delete-modal').addEventListener('click', () => { closeDeleteModal(); });
 
 /**
- * Cierra el modal
+ * Cierra el modal de eliminación de gastos
  */
 function closeDeleteModal(){
     deleteModal.classList.add('hidden');
@@ -31,7 +31,14 @@ deletCancelBtn.addEventListener('click', () => { closeDeleteModal(); });
 
 
 
-// EDIT MODAL
+/**
+ * Abre el modal de edición de gastos y establece los datos del gasto seleccionado
+ * @param {Number} expenseId Id 
+ * @param {String} expenseName Nombre 
+ * @param {Number} expenseCategory Categoría 
+ * @param {Number} expenseAmount Importe    
+ * @param {String} expenseDate Fecha
+ */
 function editExpense(expenseId, expenseName, expenseCategory, expenseAmount, expenseDate){
     document.getElementById('editModal').classList.remove('hidden');
     document.getElementById('expenseId').setAttribute('value', expenseId);
@@ -41,13 +48,22 @@ function editExpense(expenseId, expenseName, expenseCategory, expenseAmount, exp
     document.getElementById('dateEdit').value = expenseDate;
 
 }
+
+/**
+ * Cierra el modal de edición de gastos si se hace clic fuera de él
+ */
 document.getElementById('outiside-edit-expense-modal').addEventListener('click', () => { closeEditModal(); });
+
+/**
+ * Cierra el modal de edición de gastos
+ */
 function closeEditModal(){
     document.getElementById('editModal').classList.add('hidden');
 }
 
-// CREATE MODAL
-
+/**
+ * Abre o cierra el modal de creación de gastos. Antes, establece en el campo date la fecha de hoy y limpia el resto de campos.
+ */
 function toggleAddExpenseModal(){
     let date = new Date()
 

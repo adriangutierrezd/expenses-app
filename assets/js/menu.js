@@ -4,6 +4,9 @@ const items = document.getElementById('items');
 const body = document.getElementById('body');
 
 
+/**
+ * Abre el menú
+ */
 hamburguer.addEventListener('click', () => {
     items.classList.toggle('hidden');
     items.classList.toggle('flex');
@@ -15,7 +18,9 @@ hamburguer.addEventListener('click', () => {
     
 });
 
-
+/**
+ * Cierra el menú
+ */
 cross.addEventListener('click', () => {
     items.classList.add('close');
     // Posponemos las acciones para que se vea como se baja la opacidad

@@ -14,6 +14,9 @@ class CategoryController{
         }
     }
 
+    /**
+     * Obtiene las categorías del usuario
+     */
     public function getCategories(){
         ob_clean();
         header('Content-Type: application/json');
@@ -29,9 +32,7 @@ class CategoryController{
     }
     
     /**
-     * Crea una nueva categoría
-     * 
-     * Recibe los datos del formulario y crea una nueva categoría
+     * Recibe los datos desde Javascript y crea una nueva categoría
      */
     public function save(){
         ob_clean();
@@ -65,9 +66,7 @@ class CategoryController{
     }
 
     /**
-     * Actualiza una categoría
-     * 
-     * Recibe los datos del formulario y actualiza una categoría
+     * Recibe los datos desde Javascript y actualiza una categoría
      */
     public function update(){
         ob_clean();

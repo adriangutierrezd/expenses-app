@@ -5,7 +5,7 @@ require_once 'models/Expense.php';
 
 class BudgetController{
 
-        /**
+    /**
      * Actualiza el presupuesto del usuario.
      * 
      * Recoge, limpia y comprueba los datos enviados en el formulario. Si hay algún error lo muestra, y si está todo correcto, actualiza el dato en la base de datos y en la sesión.
@@ -40,6 +40,9 @@ class BudgetController{
         header('Location:'.base_url.'dashboard/index');
     }
 
+    /**
+     * Recibe los datos desde Javascript y actualiza el presupuesto de un usuario
+     */
     public function update(){
         ob_clean();
         header('Content-Type: application/json');
@@ -53,6 +56,9 @@ class BudgetController{
         die();
     }
 
+    /**
+     * Obtiene tanto el presupuesto de un usuario como la información de sus gastos el último mes
+     */
     public function getStats(){
         ob_clean();
         header('Content-Type: application/json');

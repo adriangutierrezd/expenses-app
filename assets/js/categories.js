@@ -13,6 +13,9 @@ editCategoryBtn.addEventListener('click', () => {updateCategory(); })
 createCategoryBtn.addEventListener('click', () => {createCategory();})
 
 
+/**
+ * Obtiene un objeto con las categorías del usuario
+ */
 async function getCategories(){
     const url = BASE_URL + 'category/getCategories';
     const response = await fetch(url);
@@ -33,6 +36,10 @@ async function getCategories(){
     }
 }
 
+/**
+ * Crea la tabla con las categorías del usuario
+ * @param {Objecy} data Objeto con las categorías del usuario
+ */
 function printCategories(data){
     categoriesContainer.innerHTML = '';
     data.forEach(element => {
@@ -55,6 +62,9 @@ function printCategories(data){
     });
 }
 
+/**
+ * Elimina una categoría
+ */
 async function delCategory(){
     const id = document.getElementById('deleteCategoryId').value;
     const url = BASE_URL + 'category/delete';
@@ -80,6 +90,10 @@ async function delCategory(){
     }
 }
 
+/**
+ * Actualiza una categoría
+ * @return {boolean} devuelve false si la validación de los campos falla
+ */
 async function updateCategory(){
     // Validaciones
     const n = document.getElementById('nameEdit').value;
@@ -131,6 +145,10 @@ async function updateCategory(){
 
 }
 
+/**
+ * Crea una categoría
+ * @return {boolean} devuelve false si la validación de los campos falla
+ */
 async function createCategory(){
     // Validaciones
     const n = document.getElementById('name').value;

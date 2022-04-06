@@ -18,6 +18,9 @@ window.addEventListener('load', () => {
 });
 
 
+/**
+ * Recoge los datos de filtrado por fecha del formulario y actualiza el listado de gastos y las gráficas
+ */
 function filter(){
     let start_date = document.getElementById('start-date').value;
     let end_date = document.getElementById('end-date').value;
@@ -26,7 +29,11 @@ function filter(){
     getExpenses(start_date, end_date);
 }
 
-
+/**
+ * Muestra un listado con los datos del periodo seleccionado
+ * @param {String} start_date Inicio del periodo. Si no se indica, será el primer día del mes
+ * @param {String} end_date Fin del periodo. Si no se indica, será el último día del mes
+ */
 async function getExpenses(start_date = null, end_date = null){
     const url = BASE_URL + 'expense/getExpenses';
     const params = {
@@ -59,6 +66,10 @@ async function getExpenses(start_date = null, end_date = null){
     }
 }
 
+/**
+ * Crea el listado con los gastos del periodo seleccionado
+ * @param {Object} data Objeto con los datos de los gastos del periodo seleccionado
+ */
 function printExpenses(data){
     expensesContainer.innerHTML = '';
     data.forEach(element => {
@@ -78,6 +89,9 @@ function printExpenses(data){
     }); 
 }
 
+/**
+ * Elimina un gasto
+ */
 async function delExpense(){
     const expenseId = document.getElementById('deleteExpenseId').value;
 
@@ -107,6 +121,9 @@ async function delExpense(){
 }
 
 
+/**
+ * Recarga las gráficas 
+ */
 function refreshCharts(){
     if(document.body.contains(document.getElementById('categoryChart'))){
         destroySpentByCategoryChart();
@@ -118,6 +135,10 @@ function refreshCharts(){
     }
 }
 
+/**
+ * Actualiza un gasto
+ * @returns {boolean} Devuelve false si ocurre algún error en la validación
+ */
 async function updateExpense(){
     // Validaciones
     const n = document.getElementById('nameEdit').value;
@@ -194,6 +215,10 @@ async function updateExpense(){
 }
 
 
+/**
+ * Crea un gasto
+ * @returns {boolean} Devuelve false si ocurre algún error en la validación
+ */
 async function createExpense(){
     // Validaciones
     const n = document.getElementById('name').value;
@@ -260,6 +285,9 @@ async function createExpense(){
 
 }
 
+/**
+ * Refresca toda la información susceptible de ser actualizada en la página
+ */
 function updateData(){
     updateStats();
     showAlert(STATUS_OK);

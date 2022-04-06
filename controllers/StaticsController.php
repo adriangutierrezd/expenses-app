@@ -10,6 +10,7 @@ class StaticsController{
      */
     public function index(){
         if(isLogged()){
+            // Datos necesarios para los formularios
             $categoryEdit = new Category();
             $categoriesEdit = $categoryEdit->getAll();
             require_once 'views/statics/index.php';

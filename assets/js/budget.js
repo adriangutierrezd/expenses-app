@@ -6,6 +6,9 @@ window.addEventListener('load', () => {
 
 updateBudgetBtn.addEventListener('click', () => {updateBudget();})
 
+/**
+ * Actualiza los datos sobre presupuesto y total gastado
+ */
 async function updateStats(){
     const url = BASE_URL + 'budget/getStats';
     const response = await fetch(url);
@@ -21,6 +24,11 @@ async function updateStats(){
     }
 }
 
+/**
+ * Obtiene el total gasto por el usuario durante el mes actual
+ * @param {Object} data Datos de los gastos del mes actual
+ * @returns Gasto total durante el mes actual
+ */
 function getTotalSpent(data){
     let totalSpent = 0;
     data[1].forEach(element => {
@@ -30,6 +38,10 @@ function getTotalSpent(data){
 }
 
 
+/**
+ * Crea el resumen con los datos financieros del mes actual
+ * @param {Object} data Datos de los gastos del mes actual
+ */
 function printStats(data){
     budgetStuff.innerHTML = '';
     if(data[0].budget != null){
@@ -79,6 +91,9 @@ function printStats(data){
     }
 }
 
+/**
+ * Actualiza los datos del presupuesto mensual del usuario
+ */
 async function updateBudget(){
     // Validar
     const budget = document.getElementById('budgetEdit').value;
