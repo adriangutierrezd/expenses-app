@@ -22,49 +22,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
-
 <!-- HEADER -->
-<div class="relative bg-neutral-800">
-    <div class="max-w-7xl mx-auto py-2 relative">
-        <nav class="flex items-center justify-between h-14">
-            <a class="text-white font-medium mx-5 hover:text-blue-100 text-2xl cursor-pointer" href="<?=base_url.'dashboard/index'?>">Expenses App</a>
-            <div class="hidden md:flex items-center justify-around">
-            <?php if(isset($_SESSION['login'])) : ?>
-                <a href="<?=base_url.'dashboard/index'?>" class="nav-link">Inicio</a>
-                <a href="<?=base_url.'category/index'?>" class="nav-link">Categorías</a>
-                <a href="<?=base_url.'statics/index'?>" class="nav-link">Estadísticas</a>
-                <a href="<?=base_url.'user/index'?>" class="nav-link">Cuenta</a>
-                <a href="<?=base_url.'user/logout'?>" class="nav-link">Cerrar sesión</a>
-            <?php endif; ?>
-            </div>
-            <div class="flex md:hidden">
-                <i class="bi bi-list text-white text-3xl p-2 hover:text-blue-100 cursor-pointer" id="hamburguer"></i>
-                <div class="hidden flex-col w-full min-h-screen overflow-hidden absolute bg-neutral-800 top-0 right-0 p-4 z-50 duration-100" id="items">
-                    <div class="max-w-7xl mx-auto flex items-center justify-between w-full p-2">
-                        <a class="flex items-center justify-start text-white" href="index.php">
-                            <img src="assets/img/icon-light.svg" alt="" class="h-10 mr-4">
-                            <span class="text-white font-semibold text-3xl tracking-wider hidden sm:block">Expenses App</span>
-                            <span class="text-white font-semibold text-3xl tracking-wider sm:hidden">EApp</span>
+<div class="relative bg-white md:grid md:grid-cols-6 md:gap-5 w-full">
+    <!-- MENU -->
+    <div class="hidden md:block relative bg-gray-100 col-span-2 xl:col-span-1 border-r border-r-gray-300 h-screen overflow-hidden p-8">
+        <div class="flex flex-col items-start justify-between min-h-full">
+            <!-- ITEMS -->
+                <div class="flex flex-col items-start justify-start w-full">
+                    <span class="text-2xl font-semibold mb-6">Expenses App</span>
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'dashboard/index'?>">
+                        <i class="bi bi-house mr-4"></i>
+                        <span>Inicio</span>
+                    </a>
+
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'category/index'?>">
+                        <i class="bi bi-archive mr-4"></i>
+                        <span>Categorías</span>
+                    </a>
+
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'statics/index'?>">
+                        <i class="bi bi-bar-chart-line mr-4"></i>
+                        <span>Estadísticas</span>
+                    </a>
+
+                </div>
+            <!-- ACCOUNT -->
+                <div class="border-t border-t-gray-400 w-full">
+                    <div class="flex flex-col items-start justify-between w-full">
+                        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/user/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 my-4" href="<?=base_url.'user/index'?>">
+                            <i class="bi bi-person mr-4"></i>
+                            <span>Configuración</span>
                         </a>
-                        <i class="bi bi-x-lg text-white text-3xl hover:text-blue-100 cursor-pointer" id="cross"></i>
-                    </div>
-                    <div class="flex flex-col w-full items-center justify-center" id="dropdown-menu-items">
-                        <?php if(isset($_SESSION['login'])) : ?>
-                            <a href="<?=base_url.'dashboard/index'?>" class="nav-link-responsive">Inicio</a>
-                            <a href="<?=base_url.'category/index'?>" class="nav-link-responsive">Categorías</a>
-                            <a href="<?=base_url.'statics/index'?>" class="nav-link-responsive">Estadísticas</a>
-                            <a href="<?=base_url.'user/index'?>" class="nav-link-responsive">Cuenta</a>
-                            <a href="<?=base_url.'user/logout'?>" class="nav-link-responsive">Cerrar sesión</a>
-                        <?php else: ?>
-                            <a href="<?=base_url.'user/login'?>" class="nav-link-responsive">Acceder</a>
-                        <?php endif; ?>
+                        <a class="flex items-center justify-end text-md p-2 hover:bg-gray-200 rounded-md duration-100 ml-auto" href="<?=base_url.'user/logout'?>">
+                            <span class="mr-4">Cerrar sesión</span>
+                            <i class="bi bi-box-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
-            </div>
-        </nav>
+        </div>
     </div>
-</div>
 
-
-
-
+    <!-- RESPONSIVE MENU -->
+    <div class="bg-gray-100 border-t border-t-gray-200 z-10 fixed bottom-0 left-0 right-0 flex items-center justify-between p-1 md:hidden">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'dashboard/index'?>">
+            <i class="bi bi-house"></i>
+            <span>Inicio</span>
+        </a>
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'category/index'?>">
+            <i class="bi bi-archive"></i>
+            <span>Catgs</span>
+        </a>
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'statics/index'?>">
+            <i class="bi bi-bar-chart-line"></i>
+            <span>Estats.</span>
+        </a>
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/user/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'user/index'?>">
+            <i class="bi bi-person"></i>
+            <span>Cuenta</span>
+        </a>
+    </div>
+    <!-- CONTENT -->
+    <div class="md:col-span-4 xl:col-span-5 p-8 md:h-screen md:overflow-y-auto">

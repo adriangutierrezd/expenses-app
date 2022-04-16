@@ -11,7 +11,10 @@ require_once 'helpers/form.php';
 <h1 class="h1">Cuenta</h1>
 
 
-
+<!-- LOG OUT -->
+<div class="w-full flex items-center justify-end my-2">
+  <a href="<?=base_url.'user/logout'?>" class="inline-block rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Cerrar sesión</a>
+</div>
 
 <!-- UPDATE USER -->
 <div class="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl w-full border border-gray-100 my-8">
