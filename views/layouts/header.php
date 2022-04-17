@@ -31,22 +31,22 @@
             <!-- ITEMS -->
                 <div class="flex flex-col items-start justify-start w-full">
                     <span class="text-2xl font-semibold mb-6">Expenses App</span>
-                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'dashboard/index'?>">
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> nav-link" href="<?=base_url.'dashboard/index'?>">
                         <i class="bi bi-house mr-4"></i>
                         <span>Inicio</span>
                     </a>
 
-                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'category/index'?>">
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> nav-link" href="<?=base_url.'category/index'?>">
                         <i class="bi bi-archive mr-4"></i>
                         <span>Categorías</span>
                     </a>
 
-                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'statics/index'?>">
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> nav-link" href="<?=base_url.'statics/index'?>">
                         <i class="bi bi-bar-chart-line mr-4"></i>
                         <span>Estadísticas</span>
                     </a>
 
-                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'expense/index'?>">
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> nav-link" href="<?=base_url.'expense/index'?>">
                     <i class="bi bi-currency-euro mr-4"></i>
                         <span>Gastos</span>
                     </a>
@@ -69,26 +69,26 @@
     </div>
 
     <!-- RESPONSIVE MENU -->
-    <div class="bg-gray-100 border-t border-t-gray-200 z-10 fixed bottom-0 left-0 right-0 flex items-center justify-between p-1 md:hidden">
-        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'dashboard/index'?>">
+    <div class="bg-gray-100 border-t border-t-gray-200 z-10 fixed bottom-0 left-0 right-0 flex items-center justify-between px-1 py-2 md:hidden">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/dashboard/index' ? 'bg-gray-200' : ''); ?> nav-link-responsive" href="<?=base_url.'dashboard/index'?>">
             <i class="bi bi-house"></i>
             <span>Inicio</span>
         </a>
-        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'category/index'?>">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/category/index' ? 'bg-gray-200' : ''); ?> nav-link-responsive" href="<?=base_url.'category/index'?>">
             <i class="bi bi-archive"></i>
             <span>Catgs</span>
         </a>
-        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'statics/index'?>">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> nav-link-responsive" href="<?=base_url.'statics/index'?>">
             <i class="bi bi-bar-chart-line"></i>
             <span>Estats.</span>
         </a>
 
-        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'expense/index'?>">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> nav-link-responsive" href="<?=base_url.'expense/index'?>">
             <i class="bi bi-currency-euro"></i>
             <span>Gastos</span>
         </a>
 
-        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/user/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'user/index'?>">
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/user/index' ? 'bg-gray-200' : ''); ?> nav-link-responsive" href="<?=base_url.'user/index'?>">
             <i class="bi bi-person"></i>
             <span>Cuenta</span>
         </a>
