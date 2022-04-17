@@ -88,6 +88,7 @@ async function delCategory(){
         case STATUS_OK:
             closeDeleteModal();
             getCategories();
+            showAlert(STATUS_OK);
             break;
         default:
             showAlert(1);
@@ -195,6 +196,7 @@ async function createCategory(){
             getCategories();
             document.getElementById('name').value = '';
             document.getElementById('color').value = '#00000';
+            showAlert(STATUS_OK);
             break;
         case defualt:
             showAlert(1);
