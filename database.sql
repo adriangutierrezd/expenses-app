@@ -87,11 +87,14 @@ CREATE TRIGGER trigger_insert_expenses_update_results
 AFTER INSERT ON expenses
 FOR EACH ROW
 BEGIN 
-	IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
-		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
-        WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
-	END IF;
+	IF NEW.user_id IN (SELECT user_id FROM results WHERE MONTH(date) = MONTH(NEW.date)) THEN
+		IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
+			UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
+			WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
+        END IF;
+    END IF;
 END; $$
+
 
 
 DELIMITER $$
