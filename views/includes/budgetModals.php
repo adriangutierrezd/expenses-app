@@ -1,7 +1,7 @@
 <!-- BUDGET -->
 <?php if($_SESSION['login']->budget === NULL) : ?>
     <div class="bg-blue-600">
-        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+        <div class="w-full py-3 px-3 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row items-center justify-between flex-wrap">
             <div class="flex items-center">
             <span class="flex p-2 px-3 rounded-lg bg-blue-800">

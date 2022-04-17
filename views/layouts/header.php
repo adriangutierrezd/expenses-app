@@ -24,7 +24,7 @@
 </head>
 <body>
 <!-- HEADER -->
-<div class="relative bg-white md:grid md:grid-cols-6 md:gap-5 w-full">
+<div class="relative bg-white md:grid md:grid-cols-6 w-full">
     <!-- MENU -->
     <div class="hidden md:block relative bg-gray-100 col-span-2 xl:col-span-1 border-r border-r-gray-300 h-screen overflow-hidden p-8">
         <div class="flex flex-col items-start justify-between min-h-full">
@@ -94,4 +94,6 @@
         </a>
     </div>
     <!-- CONTENT -->
-    <div class="md:col-span-4 xl:col-span-5 p-8 md:h-screen md:overflow-y-auto">
+    <div class="md:col-span-4 xl:col-span-5 md:h-screen md:overflow-y-auto">
+    <?php if(isset($_SESSION['login'])) require_once 'views/includes/budgetModals.php'; ?> 
+        <div class="p-8">

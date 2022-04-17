@@ -5,7 +5,7 @@ require_once 'controllers/DashboardController.php';
 ?>
 
 
-<?php require_once 'views/includes/budgetModals.php'; ?>
+
 
 <!-- CONTENT -->
 <div>
