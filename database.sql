@@ -51,6 +51,71 @@ CREATE TABLE expenses(
     CONSTRAINT exp_cat_fk FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
+/* NEW */
+
+CREATE TABLE results (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(5) NOT NULL,
+    budget FLOAT(10,2) NOT NULL,
+    spent FLOAT(10,2) NOT NULL,
+    date DATE NOT NULL,
+    CONSTRAINT res_id_pk PRIMARY KEY(id),
+    CONSTRAINT res_use_fk FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Activamos eventos 
+SET GLOBAL event_scheduler = 1;
+
+-- Creamos un evento para que todos los meses saque los resultados del mes del usuario
+DELIMITER $$
+CREATE EVENT generate_monthly_summary
+ON SCHEDULE EVERY '1' MONTH
+STARTS '2022-05-01 00:00:00'
+DO 
+BEGIN
+    INSERT INTO results (user_id, budget, spent, date) SELECT expenses.user_id, users.budget, SUM(expenses.amount), DATE_SUB(CURDATE(), INTERVAL 1 DAY)
+    FROM expenses INNER JOIN users ON expenses.user_id = users.id 
+    AND (MONTH(expenses.date) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 DAY)) AND YEAR(expenses.date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 DAY))) 
+    GROUP BY user_id;
+END$$
+
+DELIMITER ;
+
+-- Si el usuario añade, actualiza o elimina un gasto de un mes pasado, se actualizan los resultados de dicho mes
+DELIMITER $$
+CREATE TRIGGER trigger_insert_expenses_update_results 
+AFTER INSERT ON expenses
+FOR EACH ROW
+BEGIN 
+	IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
+		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
+        WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
+	END IF;
+END; $$
+
+
+DELIMITER $$
+CREATE TRIGGER trigger_update_expenses_update_results 
+AFTER UPDATE ON expenses
+FOR EACH ROW
+BEGIN 
+	IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
+		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
+        WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
+	END IF;
+END; $$
+
+
+DELIMITER $$
+CREATE TRIGGER trigger_delete_expenses_update_results 
+AFTER DELETE ON expenses
+FOR EACH ROW
+BEGIN 
+	IF MONTH(OLD.date) != MONTH(CURDATE()) THEN 
+		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE OLD.user_id = user_id AND MONTH(date) = MONTH(OLD.date)) 
+        WHERE OLD.user_id = user_id AND MONTH(date) = MONTH(OLD.date);
+	END IF;
+END; $$
 
 
 

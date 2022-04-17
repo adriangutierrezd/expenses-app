@@ -19,20 +19,25 @@ createCategoryBtn.addEventListener('click', () => {createCategory();})
 async function getCategories(){
     const url = BASE_URL + 'category/getCategories';
     const response = await fetch(url);
-    switch(response.status){
+    switch (response.status) {
         case STATUS_OK:
             const data = await response.json();
             printCategories(data);
             break;
         case STATUS_ERROR_SERVER:
-            categoriesContainer.innerText = 'Ha ocurrido un error del servidor';
+            categoriesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${STATUS_ERROR_SERVER_MESSAGE}</td>
+            </tr>`;
             break;
         case STATUS_NOT_FOUND:
-            categoriesContainer.innerText = 'No podemos encontrar los recursos que buscas';
+            categoriesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${STATUS_NOT_FOUND_MESSAGE}</td>
+            </tr>`;
             break;
-        case defualt:
-            categoriesContainer.innerText = 'Ha ocurrido un error inesperado';
-            break;
+        default:
+            categoriesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${UNEXPECTED_ERROR}</td>
+            </tr>`;
     }
 }
 

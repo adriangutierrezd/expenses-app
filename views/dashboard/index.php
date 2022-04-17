@@ -8,7 +8,7 @@ require_once 'controllers/DashboardController.php';
 <?php require_once 'views/includes/budgetModals.php'; ?>
 
 <!-- CONTENT -->
-<div class="max-w-7xl mx-auto my-6 px-4">
+<div>
 
 <h1 class="h1">Resumen del mes:</h1>
 

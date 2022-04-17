@@ -30,18 +30,6 @@ async function getSpentByMonth(){
 }
 
 /**
- * Obtiene el nombre de un mes a partir de su número
- * @param {Number} mes Número del mes a convertir a texto
- * @returns Nombre del mes
- */
-function getMonthName(mes){
-    var date =  mes +'/01/2001';
-    var fecha = new Date(date);
-    var monthName = fecha.toLocaleDateString('es-ES', {month: 'long'});
-    return monthName;
-}
-
-/**
  * Crea la gráfica de gasto desgregado por mes
  * @param {Object} data Datos de los gastos del último año natural
  */

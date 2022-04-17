@@ -7,12 +7,13 @@
     <title>Document</title>
     <link rel="stylesheet" href="<?=base_url?>/assets/css/styles.css">
     <link rel="stylesheet" href="<?=base_url?>/assets/css/menu.css">
-    <script type="text/javascript" src="<?=base_url?>/assets/js/menu.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/alerts.js" defer></script>
+    <script type="text/javascript" src="<?=base_url?>/assets/js/results.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/expensesModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/categoriesModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/budgetModal.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/expenses.js" defer></script>
+    <script type="text/javascript" src="<?=base_url?>/assets/js/results.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/categories.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/budget.js" defer></script>
     <script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByMonthChart.js" defer></script>
@@ -43,6 +44,11 @@
                     <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/statics/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'statics/index'?>">
                         <i class="bi bi-bar-chart-line mr-4"></i>
                         <span>Estadísticas</span>
+                    </a>
+
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> flex items-center justify-start w-full text-lg p-2 hover:bg-gray-200 rounded-md font-medium duration-100 mb-4" href="<?=base_url.'expense/index'?>">
+                    <i class="bi bi-currency-euro mr-4"></i>
+                        <span>Gastos</span>
                     </a>
 
                 </div>
@@ -76,6 +82,12 @@
             <i class="bi bi-bar-chart-line"></i>
             <span>Estats.</span>
         </a>
+
+        <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'expense/index'?>">
+            <i class="bi bi-currency-euro"></i>
+            <span>Gastos</span>
+        </a>
+
         <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/user/index' ? 'bg-gray-200' : ''); ?> flex flex-col items-center justify-center w-full text-sm hover:bg-gray-200 rounded-md font-medium duration-100" href="<?=base_url.'user/index'?>">
             <i class="bi bi-person"></i>
             <span>Cuenta</span>

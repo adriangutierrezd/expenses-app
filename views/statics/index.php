@@ -4,11 +4,36 @@
 ?>
 
 <!-- CONTENT -->
-<div class="max-w-7xl mx-auto my-6 px-4">
+<div>
 <h1 class="h1">Estadísticas</h1>
 
 
 <?php require_once 'views/includes/alerts.php'; ?>
+
+<div class="my-4">
+    <h2 class="h2">Resultados de los últimos meses</h2>
+    <div class="flex flex-col shadow-xl w-full border border-gray-100 rounded-lg my-8">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="shadow overflow-hidden ">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Mes</th>
+                    <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Presupuesto</th>
+                    <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Gastado</th>
+                    <th scope="col" class="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ahorro</th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200" id="resultsContainer">
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
 
 <!-- FILTERS -->
 <div class="my-8" id="filterContainer">
@@ -26,12 +51,15 @@
 </div>
 
 <!-- GRAPHS -->
-<h2 class="h2">Gasto desagregado por categoría:</h2>
-<canvas id="categoryChart" width="1250" height="600"></canvas>
+<div class="my-4">
+    <h2 class="h2">Gasto desagregado por categoría:</h2>
+    <canvas id="categoryChart" width="1250" height="600"></canvas>
+</div>
+
+<div class="my-4">
+    <h2 class="h2">Gasto desagregado por mes en los últimos 12 meses:</h2>
+    <canvas id="monthlyChart" width="1250" height="600"></canvas>
+</div>
 
 
-<?php require_once 'views/includes/expense-controllers.php'; ?>
-
-<h2 class="h2">Gasto desagregado por mes en los últimos 12 meses:</h2>
-<canvas id="monthlyChart" width="1250" height="600"></canvas>
 

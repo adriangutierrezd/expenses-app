@@ -5,7 +5,7 @@ require_once 'helpers/form.php';
 
 
 <!-- CONTENT -->
-<div class="max-w-7xl mx-auto my-6 px-4">
+<div>
 <?= showFeeback(); ?>
 
 <h1 class="h1">Cuenta</h1>

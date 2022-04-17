@@ -11,10 +11,8 @@ window.addEventListener('load', () => {
         const addExpenseBtn = document.getElementById('addExpenseBtn');
         addExpenseBtn.addEventListener('click', () => {createExpense();})
     }
-    if(document.body.contains(document.getElementById('filterContainer'))){
-        const filterBtn = document.getElementById('filterBtn');
-        filterBtn.addEventListener('click', () => {filter();})
-    }
+    const filterBtn = document.getElementById('filterBtn');
+    filterBtn.addEventListener('click', () => {filter();})
 });
 
 
@@ -24,9 +22,11 @@ window.addEventListener('load', () => {
 function filter(){
     let start_date = document.getElementById('start-date').value;
     let end_date = document.getElementById('end-date').value;
-    destroySpentByCategoryChart();
-    getSpentByCategory(start_date, end_date);
     getExpenses(start_date, end_date);
+    if(document.body.contains(document.getElementById('monthlyChart'))){
+        destroySpentByCategoryChart();
+        getSpentByCategory(start_date, end_date);
+    }
 }
 
 /**
@@ -49,20 +49,25 @@ async function getExpenses(start_date = null, end_date = null){
     }
 
     const response = await fetch(url, info);
-    switch(response.status){
+    switch (response.status) {
         case STATUS_OK:
             const data = await response.json();
             printExpenses(data);
             break;
         case STATUS_ERROR_SERVER:
-            expensesContainer.innerText = 'Ha ocurrido un error del servidor';
+            expensesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${STATUS_ERROR_SERVER_MESSAGE}</td>
+            </tr>`;
             break;
         case STATUS_NOT_FOUND:
-            expensesContainer.innerText = 'No podemos encontrar los recursos que buscas';
+            expensesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${STATUS_NOT_FOUND_MESSAGE}</td>
+            </tr>`;
             break;
-        case defualt:
-            expensesContainer.innerText = 'Ha ocurrido un error inesperado';
-            break;
+        default:
+            expensesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${UNEXPECTED_ERROR}</td>
+            </tr>`;
     }
 }
 
@@ -72,6 +77,12 @@ async function getExpenses(start_date = null, end_date = null){
  */
 function printExpenses(data){
     expensesContainer.innerHTML = '';
+    if(typeof(data) == 'string'){
+        expensesContainer.innerHTML = `<tr>
+            <td class="px-2 py-4" colspan="5">${data}</td>
+        </tr>`;
+        return;
+    }
     data.forEach(element => {
         const elementHTML = `
         <tr>
@@ -214,7 +225,6 @@ async function updateExpense(){
     }
 }
 
-
 /**
  * Crea un gasto
  * @returns {boolean} Devuelve false si ocurre algún error en la validación
@@ -291,6 +301,12 @@ async function createExpense(){
 function updateData(){
     updateStats();
     showAlert(STATUS_OK);
-    getExpenses();
+    let start_date = null;
+    let end_date = null;
+    if(document.body.contains(document.getElementById('start-date')) && document.body.contains(document.getElementById('end-date'))){
+        start_date = document.getElementById('start-date').value;
+        end_date = document.getElementById('end-date').value;
+    }
+    getExpenses(start_date, end_date);
     refreshCharts();
 }

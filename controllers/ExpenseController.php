@@ -5,6 +5,16 @@ require_once 'models/Category.php';
 require_once 'helpers/Utils.php';
 
 class ExpenseController{
+
+    public function index(){
+        if(isLogged()){
+            $category = new Category();
+            $categories = $category->getAll();
+            $categoryEdit = new Category();
+            $categoriesEdit = $categoryEdit->getAll();
+            require_once 'views/expenses/index.php';
+        }
+    }
     
     /**
      * Recibe los datos desde Javascript y crea un nuevo gasto
@@ -119,9 +129,14 @@ class ExpenseController{
         $expenses = [];
         $expense = new Expense();
         $data = $expense->getAll($startDate, $endDate);
-        while($exp = $data->fetch_object()){
-            array_push($expenses, $exp);
+        if($data){
+            while($exp = $data->fetch_object()){
+                array_push($expenses, $exp);
+            }
+        }else{
+            $expenses = 'Debes añadir algún gasto.';
         }
+        if(count($expenses) <= 0){$expenses = 'Debes añadir algún gasto.';}
         echo json_encode($expenses);
         die();
     }

@@ -5,7 +5,8 @@ require_once 'helpers/form.php';
 
 
 <!-- CONTENT -->
-<div class="max-w-7xl mx-auto my-6 px-4">
+<div>
+<h1 class="h1">Categorías</h1>
 
 <?php require_once 'views/includes/alerts.php'; ?>
 
