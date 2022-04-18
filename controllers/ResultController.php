@@ -21,7 +21,7 @@ class ResultController{
         }else{
             $results = 'Debes esperar a que termine el mes para visualizar estas estadísticas.';
         }
-        if(count($results) <= 0){$results = 'Debes esperar a que termine el mes para visualizar estas estadísticas.';}
+        if(gettype($results) === 'array' && count($results) <= 0){$results = 'Debes esperar a que termine el mes para visualizar estas estadísticas.';}
         echo json_encode($results);
         die();
     }

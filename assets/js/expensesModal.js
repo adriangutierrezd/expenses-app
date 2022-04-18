@@ -15,7 +15,10 @@ function deleteExpense(expenseId){
 /**
  * Cierra el modal de eliminación de gastos si se hace clic fuera de el
  */
-document.getElementById('outside-delete-modal').addEventListener('click', () => { closeDeleteModal(); });
+if(document.body.contains(document.getElementById('outside-delete-modal'))){
+    document.getElementById('outside-delete-modal').addEventListener('click', () => { closeDeleteModal(); });
+}
+
 
 /**
  * Cierra el modal de eliminación de gastos

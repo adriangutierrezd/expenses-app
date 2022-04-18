@@ -1,7 +1,8 @@
+const resultContainer = document.getElementById('resultsContainer');
 window.addEventListener('load', () => {
     getResults();
 });
-const resultContainer = document.getElementById('resultsContainer');
+
 
 /**
  * Obtiene los resultados obtenidos por el usuario

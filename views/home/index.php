@@ -111,6 +111,9 @@ require_once 'helpers/form.php';
 
 <?php deleteFeedback(); deleteErrors(); ?>
 
+</div>
+</div>
+
 <script>
   var toggle = document.getElementById('toggle');
   toggle.addEventListener('click', () => {

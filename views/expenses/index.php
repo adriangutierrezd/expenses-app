@@ -22,5 +22,12 @@
 <?php require_once 'views/includes/expense-controllers.php'; ?>
 <?php include_once 'views/includes/add-expense-modal.php'; ?>
 
+</div>
+</div>
 
+
+
+<script type="text/javascript" src="<?=base_url?>/assets/js/expensesModal.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/expenses.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/filterExpenses.js" defer></script>
 

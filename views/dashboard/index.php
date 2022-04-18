@@ -28,3 +28,11 @@ require_once 'controllers/DashboardController.php';
 
 <?php include_once 'views/includes/add-expense-modal.php'; ?>
 <?php require_once 'views/includes/expense-controllers.php'; ?>
+
+</div>
+</div>
+<script type="text/javascript" src="<?=base_url?>/assets/js/expensesModal.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/budgetModal.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/expenses.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/budget.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByCategoryChart.js" defer></script>

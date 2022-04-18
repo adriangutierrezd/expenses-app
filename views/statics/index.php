@@ -63,3 +63,10 @@
 
 
 
+</div>
+</div>
+
+<script type="text/javascript" src="<?=base_url?>/assets/js/results.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByMonthChart.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/amountSpentByCategoryChart.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/filterExpenses.js" defer></script>

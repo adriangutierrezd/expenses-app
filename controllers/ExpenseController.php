@@ -136,7 +136,7 @@ class ExpenseController{
         }else{
             $expenses = 'Debes añadir algún gasto.';
         }
-        if(count($expenses) <= 0){$expenses = 'Debes añadir algún gasto.';}
+        if(gettype($expenses) === 'array' && count($expenses) <= 0){$expenses = 'Debes añadir algún gasto.';}
         echo json_encode($expenses);
         die();
     }

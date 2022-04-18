@@ -11,23 +11,8 @@ window.addEventListener('load', () => {
         const addExpenseBtn = document.getElementById('addExpenseBtn');
         addExpenseBtn.addEventListener('click', () => {createExpense();})
     }
-    const filterBtn = document.getElementById('filterBtn');
-    filterBtn.addEventListener('click', () => {filter();})
 });
 
-
-/**
- * Recoge los datos de filtrado por fecha del formulario y actualiza el listado de gastos y las gráficas
- */
-function filter(){
-    let start_date = document.getElementById('start-date').value;
-    let end_date = document.getElementById('end-date').value;
-    getExpenses(start_date, end_date);
-    if(document.body.contains(document.getElementById('monthlyChart'))){
-        destroySpentByCategoryChart();
-        getSpentByCategory(start_date, end_date);
-    }
-}
 
 /**
  * Muestra un listado con los datos del periodo seleccionado
@@ -299,7 +284,9 @@ async function createExpense(){
  * Refresca toda la información susceptible de ser actualizada en la página
  */
 function updateData(){
-    updateStats();
+    if(document.body.contains(document.getElementById('budgetStuff'))){
+        updateStats();
+    }
     showAlert(STATUS_OK);
     let start_date = null;
     let end_date = null;

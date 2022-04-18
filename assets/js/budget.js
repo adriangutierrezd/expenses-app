@@ -1,9 +1,8 @@
 window.addEventListener('load', () => {
-    const budgetStuff = document.getElementById('budgetStuff');
     const updateBudgetBtn = document.getElementById('updateBudgetBtn');
     updateStats();
 })
-
+const budgetStuff = document.getElementById('budgetStuff');
 updateBudgetBtn.addEventListener('click', () => {updateBudget();})
 
 /**

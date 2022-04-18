@@ -146,3 +146,7 @@ require_once 'helpers/form.php';
   </div>
 </div>
 
+</div>
+</div>
+<script type="text/javascript" src="<?=base_url?>/assets/js/categoriesModal.js" defer></script>
+<script type="text/javascript" src="<?=base_url?>/assets/js/categories.js" defer></script>

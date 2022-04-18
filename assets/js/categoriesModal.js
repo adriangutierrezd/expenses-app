@@ -10,7 +10,10 @@ function deleteCategory(categoryId){
 /**
  * Cierra el modal de eliminación de categorías si se hace click fuera de él
  */
-document.getElementById('outside-delete-modal').addEventListener('click', () => { closeDeleteModal(); });
+if(document.body.contains(document.getElementById('outside-delete-modal'))){
+    document.getElementById('outside-delete-modal').addEventListener('click', () => { closeDeleteModal(); });
+}
+
 
 /**
  * Cierra el modal de eliminación de categorías
@@ -40,7 +43,10 @@ function editCategory(categoryId, categoryName, categoryColor){
 /**
  * Cierra el modal de edición de categorías si se hace click fuera de él
  */
-document.getElementById('outiside-edit-category-modal').addEventListener('click', () => { closeEditModal(); });
+if(document.body.contains(document.getElementById('outiside-edit-category-modal'))){
+    document.getElementById('outiside-edit-category-modal').addEventListener('click', () => { closeEditModal(); });
+}
+
 
 /**
  * Cierra el modal de edición de categorías

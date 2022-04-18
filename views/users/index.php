@@ -127,3 +127,7 @@ require_once 'helpers/form.php';
 
 
 <?php deleteFeedback(); deleteErrors(); ?>
+
+
+</div>
+</div>

@@ -2,15 +2,19 @@ window.addEventListener('load', () => {
     if(document.body.contains(document.getElementById('categoriesContainer'))){
         getCategories();
         const categoriesContainer = document.getElementById('categoriesContainer');
-        const deleteCategoryBtn = document.getElementById('deleteCategoryBtn');
-        const editCategoryBtn = document.getElementById('editCategoryBtn');
-        const createCategoryBtn = document.getElementById('createCategoryBtn');
     }
 });
 
-deleteCategoryBtn.addEventListener('click', () => {delCategory();})
-editCategoryBtn.addEventListener('click', () => {updateCategory(); })
-createCategoryBtn.addEventListener('click', () => {createCategory();})
+if(document.body.contains(document.getElementById('deleteCategoryBtn'))){
+    document.getElementById('deleteCategoryBtn').addEventListener('click', () => {delCategory();})
+}
+if(document.body.contains(document.getElementById('editCategoryBtn'))){
+    document.getElementById('editCategoryBtn').addEventListener('click', () => {updateCategory(); })
+}
+if(document.body.contains(document.getElementById('createCategoryBtn'))){
+    document.getElementById('createCategoryBtn').addEventListener('click', () => {createCategory();})
+}
+
 
 
 /**
