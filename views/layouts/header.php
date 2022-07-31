@@ -85,4 +85,4 @@
     <!-- CONTENT -->
     <div class="md:col-span-4 xl:col-span-5 md:h-screen md:overflow-y-auto">
     <?php if(isset($_SESSION['login'])) require_once 'views/includes/budgetModals.php'; ?> 
-        <div class="p-8">
+        <div class="p-8" style="padding-bottom: 3rem;">
