@@ -40,6 +40,11 @@
                         <span>Gastos</span>
                     </a>
 
+                    <a class="<?php echo ($_SERVER["REQUEST_URI"] == '/expenses-app/expense/recurrent' ? 'bg-gray-200' : ''); ?> nav-link" href="<?=base_url.'expense/recurrent'?>">
+                    <i class="bi bi-arrow-clockwise mr-4"></i>
+                        <span>Gastos recurrentes</span>
+                    </a>
+
                 </div>
             <!-- ACCOUNT -->
                 <div class="border-t border-t-gray-400 w-full">

@@ -173,6 +173,18 @@ class ExpenseController{
         }
     }
 
+
+    /**
+     * Carga la vista de gastos recurrentes
+    */
+    public function recurrent(){
+        if(isLogged()){
+            $category = new Category();
+            $categories = $category->getAll();
+            require_once 'views/expenses/recurrent.php';
+        }
+    }
+
 }
 
 
