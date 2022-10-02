@@ -77,7 +77,7 @@ function printExpenses(data){
             <td class="px-4 sm:px-6 py-4 whitespace-nowrap text-sm text-gray-900">
             <button class="text-blue-500 hover:text-blue-600" onclick="editExpense(${element.id}, '${element.expense_name}', ${element.category_id}, ${element.amount}, '${element.date}')">Editar</button>
             <span>  |  </span>
-            <button class="text-red-500 hover:text-red-600" onclick="deleteExpense(${element.id})">Eliminar</button>
+            <button class="text-red-500 hover:text-red-600" onclick="deleteExpense(${element.id}, ${element.amount}, '${element.date}')">Eliminar</button>
             </td>
         </tr>
         `;
@@ -90,10 +90,14 @@ function printExpenses(data){
  */
 async function delExpense(){
     const expenseId = document.getElementById('deleteExpenseId').value;
+    const amount = document.getElementById('amountExpense').value;
+    const date = document.getElementById('dateExpense').value;
 
     const url = BASE_URL + 'expense/delete';
     const params = {
-        id: expenseId
+        id: expenseId,
+        amount: amount,
+        date: date
     }
     const info = {
         method: 'POST',
@@ -141,6 +145,7 @@ async function updateExpense(){
     const a = document.getElementById('amountEdit').value;
     const d = document.getElementById('dateEdit').value;
     const c = document.getElementById('category_idEdit').value;
+    const e = document.getElementById('previousAmount').value;
 
     const id = document.getElementById('expenseId').value;
     const name = n.trim().length > 2 ?  n.trim() : '';
@@ -182,7 +187,8 @@ async function updateExpense(){
         name: name,
         amount: amount,
         category_id: category_id,
-        date: date
+        date: date,
+        previousAmount: e
     }
     const info = {
         method: 'POST',

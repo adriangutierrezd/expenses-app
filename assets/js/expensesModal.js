@@ -1,15 +1,21 @@
 const deleteModal = document.getElementById('deleteModal');
 const deletCancelBtn = document.getElementById('deletCancelBtn');
 var deleteExpenseId = document.getElementById('deleteExpenseId');
+var deleteExpenseAmount = document.getElementById('amountExpense');
+var deleteExpenseDate = document.getElementById('dateExpense');
 
 
 /**
  * Abre el modal y obtiene el gasto a eliminar
- * @param {*} expenseId Id del gasto a eliminar
+ * @param {Number} expenseId Id del gasto a eliminar
+ * @param {Number} amount Importe del gasto a eliminar
+ * @param {String} date Fecha del gasto a eliminar
  */
-function deleteExpense(expenseId){
+function deleteExpense(expenseId, amount, date){
     deleteModal.classList.remove('hidden');
     deleteExpenseId.setAttribute('value', expenseId);
+    deleteExpenseAmount.setAttribute('value', amount);
+    deleteExpenseDate.setAttribute('value', date);
 }
 
 /**
@@ -45,6 +51,7 @@ deletCancelBtn.addEventListener('click', () => { closeDeleteModal(); });
 function editExpense(expenseId, expenseName, expenseCategory, expenseAmount, expenseDate){
     document.getElementById('editModal').classList.remove('hidden');
     document.getElementById('expenseId').setAttribute('value', expenseId);
+    document.getElementById('previousAmount').setAttribute('value', expenseAmount);
     document.getElementById('nameEdit').value = expenseName;
     document.getElementById('amountEdit').value = expenseAmount;
     document.getElementById('category_idEdit').value = expenseCategory;

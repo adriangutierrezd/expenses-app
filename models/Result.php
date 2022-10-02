@@ -16,9 +16,26 @@ class Result{
      */
     public function getResults(){
         try{
-            $sql = "SELECT * FROM results WHERE user_id = $this->user_id ORDER BY date DESC";
+            $sql = "SELECT * FROM results WHERE user_id = $this->user_id ORDER BY anio, mes DESC";
             $results = $this->db->query($sql);
             if($results){return $results;}
+            return false;
+        }catch(Exception $e){
+            return false;
+        }
+    }
+
+
+    public function updateResults($usuario, $mes, $importe, $movimiento, $anio){
+        try{
+            $sql = '';
+            if($movimiento == 'restar'){
+                $sql = "UPDATE results SET spent = spent - $importe WHERE user_id = '$usuario' AND mes = '$mes' AND anio = '$anio'";
+            }else{
+                $sql = "UPDATE results SET spent = spent + $importe WHERE user_id = '$usuario' AND mes = '$mes' AND anio = '$anio'";
+            }
+            $results = $this->db->query($sql);
+            if($results) return true;
             return false;
         }catch(Exception $e){
             return false;

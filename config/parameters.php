@@ -1,6 +1,6 @@
 <?php
 
-define('base_url', 'https://expenses-app.adriangutierrezd.com/');
+define('base_url', 'http://localhost/expenses-app/');
 define('controller_default', 'HomeController');
 define('action_default', 'index');
 
