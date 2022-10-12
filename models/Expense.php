@@ -2,13 +2,13 @@
 
 
 class Expense{
-    private $id;
-    private $user_id;
-    private $category_id;
-    private $name;
-    private $amount;
-    private $date;
-    private $db;
+    protected $id;
+    protected $user_id;
+    protected $category_id;
+    protected $name;
+    protected $amount;
+    protected $date;
+    protected $db;
 
     /**
      * Inicia la conexión a la base de datos y obtiene el usuario conectado para las distintas operaciones del modelo.

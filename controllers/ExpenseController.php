@@ -1,6 +1,7 @@
 <?php
 
 require_once 'models/Expense.php';
+require_once 'models/RecurrentExpense.php';
 require_once 'models/Result.php';
 require_once 'models/Category.php';
 require_once 'helpers/Utils.php';
@@ -180,9 +181,96 @@ class ExpenseController{
     public function recurrent(){
         if(isLogged()){
             $category = new Category();
-            $categories = $category->getAll();
+            $catgs = $category->getAll();
+            $categories = [];
+            while ($category = $catgs->fetch_object()){
+                $categories[] = (array) $category;
+            }
             require_once 'views/expenses/recurrent.php';
         }
+    }
+
+
+    /**
+     * Obtiene la información de los gastos del periodo seleccionado
+     */
+    public function getRecurrentExpenses(){
+        ob_clean();
+        header('Content-Type: application/json');
+        $expenses = [];
+        $expense = new RecurrentExpense();
+        $data = $expense->getRecurrentExpenses();
+        if($data){
+            while($exp = $data->fetch_object()){
+                array_push($expenses, $exp);
+            }
+        }else{
+            $expenses = 'Debes añadir algún gasto recurrente.';
+        }
+        if(gettype($expenses) === 'array' && count($expenses) <= 0){$expenses = 'Debes añadir algún gasto recurrente.';}
+        echo json_encode($expenses);
+        die();
+    }
+
+
+    /**
+     * Recibe los datos de un gasto recurrente y lo crea en la base de datos
+    */
+    public function createRecurrentExpense(){
+        ob_clean();
+        header('Content-Type: application/json');
+        $request_body = file_get_contents('php://input');
+        $request = json_decode($request_body);
+        
+        $expense = new RecurrentExpense();
+        $expense->setCategory_id($request->category);
+        $expense->setName($request->name);
+        $expense->setAmount($request->amount);
+
+        $save = $expense->save();
+        
+        echo json_encode($save);
+        die();
+    }
+
+
+    /**
+     * Actualiza un gasto recurrente en la base de datos
+    */
+    public function updateRecurrentExpense(){
+        ob_clean();
+        header('Content-Type: application/json');
+        $request_body = file_get_contents('php://input');
+        $request = json_decode($request_body);
+        
+        $expense = new RecurrentExpense();
+        $expense->setId($request->id);
+        $expense->setCategory_id($request->category_id);
+        $expense->setName($request->name);
+        $expense->setAmount($request->amount);
+
+
+        $update = $expense->update();
+        echo json_encode($update);
+        die();
+    }
+
+
+    /**
+     * Elimina un gasto recurrente de la base de datos
+    */
+    public function deleteRecurrentExpense(){
+        ob_clean();
+        header('Content-Type: application/json');
+        $request_body = file_get_contents('php://input');
+        $request = json_decode($request_body);
+        
+        $expense = new RecurrentExpense();
+        $expense->setId($request->id);
+
+        $delete = $expense->deleteRecurrentExpense();
+        echo json_encode($delete);
+        die();
     }
 
 }
