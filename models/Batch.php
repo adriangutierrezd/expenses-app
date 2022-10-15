@@ -78,8 +78,44 @@ class Batch{
         }
     }
 
-        
-
+    
+    /**
+     * Obtiene un array con todos los gastos recurrentes de todos los usuarios
+    */
+    public function getAllRecurrentExpenses(){
+        try{
+            $sql = "SELECT user_id, id_categoria, amount, description FROM recurrent_expenses;";
+            $result = $this->db->query($sql);
+            $expenses = [];
+            while($row = $result->fetch_assoc()){
+                array_push($expenses, $row);
+            }
+            return $expenses;
+        }catch(Exception $exc){
+            return false;
+        }
+    }
+    
+    /**
+     *  Inserta un gasto recurrente en la cuenta de un usuario
+     * @param  String $name -> Nombre del gasto
+     * @param Integer $category -> ID de la categoría del gasto
+     * @param float $amount -> Importe del gasto
+     * @param mixed $user -> ID del usuario del gasto
+     * @param mixed $date -> Fecha del gasto
+     * @return true si la operación es exitosa, false si no lo es
+     */
+    public function processRecurrentExpense($name, $category, $amount, $user, $date){
+        try{
+            $insert = $this->db->query("INSERT INTO expenses 
+            (user_id, category_id, name, amount, date) VALUES 
+            ('$user', '$category', '$name', $amount, '$date')");
+            if($insert) return true;
+            return false;
+        }catch(Exception $exc){
+            return false;
+        }
+    }
 }
 
 ?>

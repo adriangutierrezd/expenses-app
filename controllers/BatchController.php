@@ -6,6 +6,9 @@ require_once 'helpers/Utils.php';
 
 class BatchController{
     
+    /**
+     * Genera un resumen mensual para todos los usuarios: presupuesto - gastos
+    */
     public function resumen_mensual(){
 
         $batch = new Batch();
@@ -45,6 +48,31 @@ class BatchController{
         }
 
     
+    }
+
+
+    /** 
+     * Añade a los gastos del mes de los usuario todos sus gastos recurrentes
+    */
+    public function cargar_recurrentes(){
+        
+        // Obtenemos los gastos recurrentes
+        $batch = new Batch();
+        $recurrentExpenses = $batch->getAllRecurrentExpenses();
+
+        $date = date('Y-m-d');
+
+        // Los insertamos en los respectivos usuarios
+        foreach($recurrentExpenses as $expense){
+            $user = $expense['user_id'];
+            $category = $expense['id_categoria'];
+            $amount = $expense['amount'];
+            $name = $expense['description'];
+
+            $res = $batch->processRecurrentExpense($name, $category, $amount, $user, $date);
+
+        }
+
     }
 
 }
