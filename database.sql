@@ -1,124 +1,100 @@
-CREATE DATABASE expensesapp;
-USE expensesapp;
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Versión del servidor:         10.4.24-MariaDB - mariadb.org binary distribution
+-- SO del servidor:              Win64
+-- HeidiSQL Versión:             12.0.0.6468
+-- --------------------------------------------------------
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+1:00";
-SET CHARSET 'utf8';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- Volcando estructura para tabla expensesapp.categories
+DROP TABLE IF EXISTS `categories`;
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(7) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` date DEFAULT curdate(),
+  PRIMARY KEY (`id`),
+  KEY `cat_use_fk` (`user_id`),
+  CONSTRAINT `cat_use_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE users(
+-- La exportación de datos fue deseleccionada.
 
-    id int(5) auto_increment,
-    name varchar(100) NOT NULL,
-    username varchar(150) NOT NULL UNIQUE,
-    password varchar(150) NOT NULL,
-    budget float(10,2
-    ),
-    created_at date DEFAULT(CURRENT_DATE()), 
+-- Volcando estructura para tabla expensesapp.expenses
+DROP TABLE IF EXISTS `expenses`;
+CREATE TABLE IF NOT EXISTS `expenses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `amount` float(10,2) NOT NULL,
+  `date` date DEFAULT curdate(),
+  PRIMARY KEY (`id`),
+  KEY `exp_use_fk` (`user_id`),
+  KEY `exp_cat_fk` (`category_id`),
+  CONSTRAINT `exp_cat_fk` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `exp_use_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-    CONSTRAINT use_id_pk PRIMARY KEY(id)
-);
+-- La exportación de datos fue deseleccionada.
 
-INSERT INTO users (id, username, password) VALUES (1, 'admin', 'admin');
+-- Volcando estructura para tabla expensesapp.recurrent_expenses
+DROP TABLE IF EXISTS `recurrent_expenses`;
+CREATE TABLE IF NOT EXISTS `recurrent_expenses` (
+  `id_recurrent_expenses` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `amount` float NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id_recurrent_expenses`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
+-- La exportación de datos fue deseleccionada.
 
-CREATE TABLE categories(
-    id int(5) auto_increment,
-    user_id int(5),
-    name varchar(100) NOT NULL,
-    color varchar(7) NOT NULL,
-    created_at date DEFAULT(CURRENT_DATE()), 
+-- Volcando estructura para tabla expensesapp.results
+DROP TABLE IF EXISTS `results`;
+CREATE TABLE IF NOT EXISTS `results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `budget` float(10,2) NOT NULL,
+  `spent` float(10,2) NOT NULL,
+  `mes` tinyint(2) NOT NULL,
+  `anio` smallint(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `res_use_fk` (`user_id`),
+  CONSTRAINT `res_use_fk` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-    CONSTRAINT cat_id_pk PRIMARY KEY(id),
-    CONSTRAINT cat_use_fk FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
-);
+-- La exportación de datos fue deseleccionada.
 
-INSERT INTO categories (id, user_id, name, color) VALUES(1, 1, 'Sin categoria', '#78ffb9');
+-- Volcando estructura para tabla expensesapp.users
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `budget` float(10,2) DEFAULT NULL,
+  `created_at` date DEFAULT curdate(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2916 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- La exportación de datos fue deseleccionada.
 
-CREATE TABLE expenses(
-    id int(10) auto_increment,
-    user_id int(5),
-    category_id int(5),
-    name varchar(100),
-    amount float(10,2) NOT NULL,
-    date date DEFAULT(CURRENT_DATE()),
-
-    CONSTRAINT exp_id_pk PRIMARY KEY(id),
-    CONSTRAINT exp_use_fk FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
-    CONSTRAINT exp_cat_fk FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE SET NULL
-);
-
-/* NEW */
-
-CREATE TABLE results (
-    id INT(10) NOT NULL AUTO_INCREMENT,
-    user_id INT(5) NOT NULL,
-    budget FLOAT(10,2) NOT NULL,
-    spent FLOAT(10,2) NOT NULL,
-    date DATE NOT NULL,
-    CONSTRAINT res_id_pk PRIMARY KEY(id),
-    CONSTRAINT res_use_fk FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
--- Activamos eventos 
-SET GLOBAL event_scheduler = 1;
-
--- Creamos un evento para que todos los meses saque los resultados del mes del usuario
-DELIMITER $$
-CREATE EVENT generate_monthly_summary
-ON SCHEDULE EVERY '1' MONTH
-STARTS '2022-05-01 00:00:00'
-DO 
-BEGIN
-    INSERT INTO results (user_id, budget, spent, date) SELECT expenses.user_id, users.budget, SUM(expenses.amount), DATE_SUB(CURDATE(), INTERVAL 1 DAY)
-    FROM expenses INNER JOIN users ON expenses.user_id = users.id 
-    AND (MONTH(expenses.date) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 DAY)) AND YEAR(expenses.date) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 DAY))) 
-    GROUP BY user_id;
-END$$
-
-DELIMITER ;
-
--- Si el usuario añade, actualiza o elimina un gasto de un mes pasado, se actualizan los resultados de dicho mes
-DELIMITER $$
-CREATE TRIGGER trigger_insert_expenses_update_results 
-AFTER INSERT ON expenses
-FOR EACH ROW
-BEGIN 
-	IF NEW.user_id IN (SELECT user_id FROM results WHERE MONTH(date) = MONTH(NEW.date)) THEN
-		IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
-			UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
-			WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
-        END IF;
-    END IF;
-END; $$
-
-
-
-DELIMITER $$
-CREATE TRIGGER trigger_update_expenses_update_results 
-AFTER UPDATE ON expenses
-FOR EACH ROW
-BEGIN 
-	IF MONTH(NEW.date) != MONTH(CURDATE()) THEN 
-		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date)) 
-        WHERE NEW.user_id = user_id AND MONTH(date) = MONTH(NEW.date);
-	END IF;
-END; $$
-
-
-DELIMITER $$
-CREATE TRIGGER trigger_delete_expenses_update_results 
-AFTER DELETE ON expenses
-FOR EACH ROW
-BEGIN 
-	IF MONTH(OLD.date) != MONTH(CURDATE()) THEN 
-		UPDATE results SET spent = (SELECT SUM(amount) FROM expenses WHERE OLD.user_id = user_id AND MONTH(date) = MONTH(OLD.date)) 
-        WHERE OLD.user_id = user_id AND MONTH(date) = MONTH(OLD.date);
-	END IF;
-END; $$
-
-
-
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

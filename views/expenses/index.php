@@ -21,7 +21,7 @@
 </div>
 <?php require_once 'views/includes/expense-controllers.php'; ?>
 <?php include_once 'views/includes/add-expense-modal.php'; ?>
-
+<div><a href="<?= base_url; ?>expense/recurrent" class="rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm mt-2">Gastos recurrentes</a></div>
 </div>
 </div>
 
